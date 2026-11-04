@@ -54,8 +54,8 @@ QKart-Playwright/
 **1. Clone the repository**
 
 ```bash
-git clone <repository-url>
-cd QKart-Playwright
+git clone https://github.com/Ritzymishra96/QKart_Playwright_Project.git
+cd QKart_Playwright_Project
 ```
 
 **2. Install dependencies**
@@ -75,6 +75,13 @@ npx playwright install
 ```bash
 npx playwright test
 ```
+
+Tests that sign in to the existing account require `QKART_USERNAME` and
+`QKART_PASSWORD` environment variables. Without them, those tests are skipped;
+registration and checkout tests continue to run with generated accounts.
+Optionally set `QKART_TEST_PASSWORD` to choose the password for generated test
+accounts, `QKART_INCORRECT_PASSWORD` for the invalid-login test, and `BASE_URL`
+to override the application URL. Keep account credentials out of tracked files.
 
 **5. Execute tests in headed mode**
 
