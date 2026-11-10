@@ -1,7 +1,19 @@
 const { test, expect } = require('../fixtures/test');
+const fs = require('node:fs/promises');
+const path = require('node:path');
 const dataset = require('../utils/TestData.json');
 const registrationPassword = process.env.QKART_TEST_PASSWORD || 'TestPassword123!';
 const incorrectPassword = process.env.QKART_INCORRECT_PASSWORD || 'IncorrectPassword123!';
+
+test.afterEach(async ({ page }, testInfo) => {
+    if (page.isClosed()) {
+        return;
+    }
+
+    const screenshotPath = testInfo.outputPath('screenshots', 'final-state.png');
+    await fs.mkdir(path.dirname(screenshotPath), { recursive: true });
+    await page.screenshot({ path: screenshotPath, fullPage: true });
+});
 
 function generateUsername() {
     return `testuser${Date.now()}${Math.random().toString(36).slice(2, 8)}@gmail.com`;

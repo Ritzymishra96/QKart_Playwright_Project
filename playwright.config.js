@@ -27,7 +27,7 @@ module.exports = defineConfig({
     baseURL: process.env.BASE_URL || dataset.URL,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure'
+    video: 'on'
   },
 
   projects: [
